@@ -128,7 +128,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <form id="form527624881" name='form527624881' role="form" action='' method='POST' data-formactiontype="0" data-inputbox=".t-input-group" class="t-form js-form-proccess t-form_inputs-total_3 " data-success-callback="t720_onSuccess">
+                                        <!--<form id="form527624881" name='form527624881' role="form" action='' method='POST' data-formactiontype="0" data-inputbox=".t-input-group" class="t-form js-form-proccess t-form_inputs-total_3 " data-success-callback="t720_onSuccess">-->
+                                           <form id="form527624881" name='form527624881' role="form" action='' method='POST'>
                                             <!-- NO ONE SERVICES CONNECTED -->
                                             <div class="js-successbox t-form__successbox t-text t-text_md" style="display:none;"></div>
                                             <div class="t-form__inputsbox">
@@ -150,7 +151,8 @@
                                                     <div class="t-input-title t-descr t-descr_md" data-redactor-toolbar="no" field="li_title__1671103151963" style="font-weight:500;">Дата рождения</div>
                                                     <div class="t-input-block">
                                                         <div class="t-select__wrapper ">
-                                                        {{ form.day }}
+                                                        {% csrf_token %}
+                                                            {{ form.day }}
                                                             <!--
                                                             <select name="day" class="t-select js-tilda-rule " style="color:#000000; background-color:#ffffff; ">
                                                                 <option value="1">1</option>
@@ -180,6 +182,7 @@
                                                     <div class="t-input-title t-descr t-descr_md" data-redactor-toolbar="no" field="li_title__1497628673459" style="font-weight:500;">Месяц рождения</div>
                                                     <div class="t-input-block">
                                                         <div class="t-select__wrapper ">
+                                                            {% csrf_token %}
                                                             {{ form.mes}}
                                                             <!--<select name="mes" class="t-select js-tilda-rule " style="color:#000000; background-color:#ffffff; ">
                                                                 <option value="1">1</option>
@@ -213,8 +216,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="t-form__submit">
-                                                    <button type="submit" class="t-submit" style="color:#000000;background-color:#f2e41d;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;">Рассчитать</button>
-                                                </div>
+                                                    <input type="Submit" name="submit" value="Submit" class="t-submit" style="color:#000000;background-color:#f2e41d;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;"/>
+                                                    <!-- <button type="Submit" class="t-submit" style="color:#000000;background-color:#f2e41d;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;">Рассчитать</button>
+                                             --> </div>
                                             </div>
                                             <div class="t-form__errorbox-bottom">
                                                 <div class="js-errorbox-all t-form__errorbox-wrapper" style="display:none;">
@@ -230,6 +234,13 @@
                                                 </div>
                                             </div>
                                         </form>
+                                        {% if submitbutton == "Submit" %}
+                                            <h1>Your name is {{ name }}</h1>
+                                            <h1>Your day is {{ day }}</h1>
+                                            <h1>Your mes is {{ mes }}</h1>
+                                        {% endif %}
+                                    </div>
+                                        <!--
                                         <style>
                                         #rec527624881 input::-webkit-input-placeholder {
                                             color: #000000;
@@ -303,7 +314,7 @@
             </script>
         </div>
         <div id="rec527941908" class="r t-rec t-rec_pt_60 t-rec_pb_60" style="padding-top:60px;padding-bottom:60px; " data-record-type="106">
-            <!-- T004 -->
+             T004
             <div class="t004">
                 <div class="t-container ">
                     <div class="t-col t-col_8 t-prefix_2">
@@ -313,7 +324,7 @@
             </div>
         </div>
         <div id="rec527941913" class="r t-rec t-rec_pt_60 t-rec_pb_60" style="padding-top:60px;padding-bottom:60px; " data-record-type="106">
-            <!-- T004 -->
+           --> <!-- T004
             <div class="t004">
                 <div class="t-container ">
                     <div class="t-col t-col_8 t-prefix_2">
@@ -323,7 +334,7 @@
             </div>
         </div>
         <div id="rec527942386" class="r t-rec t-rec_pt_60 t-rec_pb_60" style="padding-top:60px;padding-bottom:60px; " data-record-type="106">
-            <!-- T004 -->
+           --> <!-- T004
             <div class="t004">
                 <div class="t-container ">
                     <div class="t-col t-col_8 t-prefix_2">
@@ -333,7 +344,7 @@
             </div>
         </div>
         <div id="rec527941757" class="r t-rec" style=" " data-animationappear="off" data-record-type="809">
-            <!-- T809 -->
+           --> <!-- T809
             <script>
             t_onReady(function() {
                 var cards = [];
@@ -394,8 +405,8 @@
             </script>
         </div>
     </div>
-    <!--/allrecords-->
-    <!-- Tilda copyright. Don't remove this line -->
+   --> <!--/allrecords-->
+    <!-- Tilda copyright. Don't remove this line
     <div class="t-tildalabel " id="tildacopy" data-tilda-sign="6527700#32643293">
         <a href="https://tilda.cc/?upm=6527700" class="t-tildalabel__link">
             <div class="t-tildalabel__wrapper">
@@ -406,8 +417,8 @@
                 <div class="t-tildalabel__txtright">Tilda</div>
             </div>
         </a>
-    </div>
-    <!-- Stat -->
+    </div>-->
+    <!-- Stat
     <script type="text/javascript">
     if (!window.mainTracker) {
         window.mainTracker = 'tilda';
@@ -431,7 +442,7 @@
             }
         })(document, window, '5f29fddc73627db85ca7876525cc4f81', 'script', 'https://static.tildacdn.info/js/tilda-stat-1.0.min.js');
     }, 2000);
-    </script>
+    </script>-->
 </body>
 </html>
 
