@@ -48,15 +48,29 @@ Days =(
     ("31", "31")
 )
 
-class NameForm(forms.Form):
+class InfoForm(forms.Form):
     #your_name = forms.CharField(label='Your name', max_length=100)
-    your_name = forms.CharField(
+    name = forms.CharField(
         widget=forms.TextInput(
-            attrs={'placeholder':'name', 'class':'t-input js-tilda-rule ',
-                   'style':'color:#000000; background-color:#ffffff; '}
+            attrs={'class':'t-input js-tilda-rule ',
+                   'value': '',
+                   'placeholder':'Имя',
+                   'data-tilda-rule':'name',
+                   'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;'}
         )
     )
-
+    birthday = forms.DateField(
+        widget=forms.DateInput(
+            attrs={'class':'t-input t-datepicker js-tilda-rule js-tilda-mask ',
+                   'value':'',
+                   'placeholder':'Дата рождения',
+                   'data-tilda-rule':'date',
+                   'data-tilda-dateformat':'DD-MM-YYYY',
+                   'data-tilda-datediv':'dash',
+                   'data-tilda-mask':'99-99-9999',
+                   'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;'}
+        )
+    )
     day = forms.ChoiceField(
         choices=Days,
         widget=forms.Select(
@@ -71,12 +85,7 @@ class NameForm(forms.Form):
                    'style': 'color:#000000; background-color:#ffffff; '}
         )
     )
-    birthday = forms.DateField(
-        widget=forms.Select(
-            attrs={'placeholder': 'birthday', 'class': 't-select js-tilda-rule ',
-                   'style': 'color:#000000; background-color:#ffffff; '}
-        )
-    )
+
 
 """
 widget=forms.TextInput(

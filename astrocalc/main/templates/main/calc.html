@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,7 +130,7 @@
                                     </div>
                                     <div>
                                         <!--<form id="form527624881" name='form527624881' role="form" action='' method='POST' data-formactiontype="0" data-inputbox=".t-input-group" class="t-form js-form-proccess t-form_inputs-total_3 " data-success-callback="t720_onSuccess">-->
-                                           <form id="form527624881" name='form527624881' role="form" action='' method='POST'>
+                                           <form id="form527624881" name='form527624881' role="form" action='{{ day }}' method='POST'>
                                             <!-- NO ONE SERVICES CONNECTED -->
                                             <div class="js-successbox t-form__successbox t-text t-text_md" style="display:none;"></div>
                                             <div class="t-form__inputsbox">
@@ -183,7 +184,7 @@
                                                     <div class="t-input-block">
                                                         <div class="t-select__wrapper ">
                                                             {% csrf_token %}
-                                                            {{ form.mes}}
+                                                            {{ form.birthday }}
                                                             <!--<select name="mes" class="t-select js-tilda-rule " style="color:#000000; background-color:#ffffff; ">
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>
@@ -216,7 +217,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="t-form__submit">
-                                                    <input type="Submit" name="submit" value="Submit" class="t-submit" style="color:#000000;background-color:#f2e41d;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;"/>
+                                                    <input type="Submit" name="submit" value="Submit" class="t-submit"
+                                                           style="color:#000000;background-color:#f2e41d;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;"/>
                                                     <!-- <button type="Submit" class="t-submit" style="color:#000000;background-color:#f2e41d;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;">Рассчитать</button>
                                              --> </div>
                                             </div>
@@ -233,12 +235,14 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div></div>
                                         </form>
                                         {% if submitbutton == "Submit" %}
                                             <h1>Your name is {{ name }}</h1>
                                             <h1>Your day is {{ day }}</h1>
                                             <h1>Your mes is {{ mes }}</h1>
                                         {% endif %}
+
                                     </div>
                                         <!--
                                         <style>

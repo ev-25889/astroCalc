@@ -1,15 +1,18 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
+from django.shortcuts import redirect
+# from convert import convert_to_num
+
 
 from .forms import NameForm
 
-def get_name(request):
+def get_info(request):
     # if this is a POST request we need to process the form data
     submitbutton = request.POST.get("submit")
 
-    firstname = ''
-    lastname = ''
-    emailvalue = ''
+    name = ''
+    birthday = ''
+    mes = ''
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = NameForm(request.POST)
@@ -19,7 +22,7 @@ def get_name(request):
             # ...
             # redirect to a new URL:
             name = form.cleaned_data.get("your_name")
-            day = form.cleaned_data.get("day")
+            birthday = form.cleaned_data.get("birthday")
             mes = form.cleaned_data.get("mes")
             #return HttpResponseRedirect('/thanks/')
 
@@ -29,9 +32,19 @@ def get_name(request):
         form = NameForm()
 
 
-    context = {'form': form, 'name': name,
-                'day': day, 'submitbutton': submitbutton,
-             'mes': mes}
+    context = {'form': form,
+               'birthday': birthday,
+               'submitbutton': submitbutton,
+               'mes': mes}
 
 
-    return render(request, 'main/calc.html', context)
+    return render(request, 'main/calc.html', context) # , redirect('results')
+
+def result_page(request, id):
+    if id == 1:
+        return HttpResponse(id)
+    if id == 2:
+        return HttpResponse(id)
+
+    return render(request, 'main/resultOct.html', {})
+
