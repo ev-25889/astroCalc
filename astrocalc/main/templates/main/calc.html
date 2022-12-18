@@ -132,6 +132,19 @@
                                         <!--<form id="form527624881" name='form527624881' role="form" action='' method='POST' data-formactiontype="0" data-inputbox=".t-input-group" class="t-form js-form-proccess t-form_inputs-total_3 " data-success-callback="t720_onSuccess">-->
                                            <form id="form527624881" name='form527624881' role="form" action='{{ day }}' method='POST'>
                                             <!-- NO ONE SERVICES CONNECTED -->
+                                               <form action="" method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="Submit" name="submit" value="Submit"/>
+</form>
+
+{% if submitbutton == "Submit" %}
+<h1>Your first name is {{ firstname }}</h1>
+<h1>Your last name is {{ lastname }}</h1>
+<h1>Your email is {{ emailvalue }}</h1>
+{% endif %}
+
+
                                             <div class="js-successbox t-form__successbox t-text t-text_md" style="display:none;"></div>
                                             <div class="t-form__inputsbox">
                                                 <div class="t-input-group t-input-group_nm" data-input-lid="1496398308530">
@@ -217,10 +230,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="t-form__submit">
-                                                    <input type="Submit" name="submit" value="Submit" class="t-submit"
-                                                           style="color:#000000;background-color:#f2e41d;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;"/>
-                                                    <!-- <button type="Submit" class="t-submit" style="color:#000000;background-color:#f2e41d;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;">Рассчитать</button>
-                                             --> </div>
+                                                    <a href="{% url 'result' %}"><input type="Submit" name="submit" value="Submit" class="t-submit"
+                                                               style="color:#000000;background-color:#f2e41d;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;"/>
+                                                    </a>
+
+
+                                                     <button type="Submit" class="t-submit" style="color:#000000;background-color:#f2e41d;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;">Рассчитать</button>
+                                            </div>
                                             </div>
                                             <div class="t-form__errorbox-bottom">
                                                 <div class="js-errorbox-all t-form__errorbox-wrapper" style="display:none;">

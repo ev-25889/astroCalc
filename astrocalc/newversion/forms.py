@@ -1,4 +1,6 @@
 from django import forms
+from .models import Data
+from django.forms import ModelForm, TextInput
 
 Meses =(
     ("1", "Январь"),
@@ -48,17 +50,66 @@ Days =(
     ("31", "31")
 )
 
-class InfoForm(forms.Form):
+class DataForm(forms.Form):
     #your_name = forms.CharField(label='Your name', max_length=100)
+    # class Meta:
+    #     model = Data
+    #     fields = ['name', 'birthday', 'city', 'street', 'house']
+    #
+    #     widgets = {
+    #         "name": TextInput(
+    #             attrs={'class':'t-input js-tilda-rule ',
+    #                    'value': '',
+    #                    'placeholder':'Имя',
+    #                    'data-tilda-rule':'name',
+    #                    'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;'}
+    #         ),
+    #         "birthday":forms.DateInput(
+    #             attrs={'class':'t-input t-datepicker js-tilda-rule js-tilda-mask ',
+    #                    'value':'',
+    #                    'placeholder':'Дата рождения',
+    #                    'data-tilda-rule':'date',
+    #                    'data-tilda-dateformat':'DD-MM-YYYY',
+    #                    'data-tilda-datediv':'dash',
+    #                    'data-tilda-mask':'99-99-9999',
+    #                    'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; '
+    #                            '-webkit-border-radius: 7px;'}
+    #         ),
+    #         "city":forms.TextInput(
+    #             attrs={'class':'t-input js-tilda-rule ',
+    #                    'value':'',
+    #                    'placeholder':'Населенный пункт',
+    #                    'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; '
+    #                            '-webkit-border-radius: 7px;'}
+    #         ),
+    #         "street":forms.TextInput(
+    #             attrs={'class':'t-input js-tilda-rule ',
+    #                    'value':'',
+    #                    'placeholder':'Улица',
+    #                    'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; '
+    #                            '-webkit-border-radius: 7px;'}
+    #         ),
+    #         "house":forms.TextInput(
+    #             attrs={'class':'t-input js-tilda-rule ',
+    #                    'value':'',
+    #                    'placeholder':'Дом, Корпус, Квартира',
+    #                    'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; '
+    #                            '-webkit-border-radius: 7px;'}
+    #         )
+    #     }
+
+    #name = forms.CharField(max_length=100)
+
     name = forms.CharField(
         widget=forms.TextInput(
             attrs={'class':'t-input js-tilda-rule ',
                    'value': '',
                    'placeholder':'Имя',
-                   'data-tilda-rule':'name',
+                   # 'data-tilda-rule':'name',
                    'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;'}
         )
     )
+
     birthday = forms.DateField(
         widget=forms.DateInput(
             attrs={'class':'t-input t-datepicker js-tilda-rule js-tilda-mask ',
@@ -68,9 +119,42 @@ class InfoForm(forms.Form):
                    'data-tilda-dateformat':'DD-MM-YYYY',
                    'data-tilda-datediv':'dash',
                    'data-tilda-mask':'99-99-9999',
-                   'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;'}
+                   'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; '
+                           '-webkit-border-radius: 7px;'}
         )
     )
+
+    city = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class':'t-input js-tilda-rule ',
+                   'value':'',
+                   'placeholder':'Населенный пункт',
+                   'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; '
+                           '-webkit-border-radius: 7px;'}
+        )
+    )
+    """
+    street =forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class':'t-input js-tilda-rule ',
+                   'value':'',
+                   'placeholder':'Улица',
+                   'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; '
+                           '-webkit-border-radius: 7px;'}
+        )
+    )
+    house = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class':'t-input js-tilda-rule ',
+                   'value':'',
+                   'placeholder':'Дом, Корпус, Квартира',
+                   'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; '
+                           '-webkit-border-radius: 7px;'}
+        )
+    )
+    
+
+
     day = forms.ChoiceField(
         choices=Days,
         widget=forms.Select(
@@ -78,6 +162,7 @@ class InfoForm(forms.Form):
                    'style':'color:#000000; background-color:#ffffff; '}
         )
     )
+
     mes = forms.ChoiceField(
         choices=Meses,
         widget=forms.Select(
@@ -85,14 +170,11 @@ class InfoForm(forms.Form):
                    'style': 'color:#000000; background-color:#ffffff; '}
         )
     )
+    """
 
 
-"""
-widget=forms.TextInput(
-                attrs={'placeholder':'day', 'class':'t-select js-tilda-rule ',
-                   'style':'color:#000000; background-color:#ffffff; '}
-            )
-"""
+
+
 
 
 
