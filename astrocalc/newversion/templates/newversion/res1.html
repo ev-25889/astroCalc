@@ -12,7 +12,7 @@
     <meta property="og:title" content="Результаты"/>
     <meta property="og:description" content="Вывод расчёта и информации"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:image" content="{% static 'newversion/png/matrix.png' %}"/>
+    <meta property="og:image" content="{{ matrix }}"/>
     <link rel="canonical" href="http://astrocalc.tilda.ws/result">
     <!--/metatextblock-->
     <meta name="format-detection" content="telephone=no"/>
@@ -91,7 +91,7 @@
 </head>
 <body class="t-body" style="margin:0;">
     <!--allrecords-->
-    <div id="allrecords" class="t-records" data-hook="blocks-collection-content-node" data-tilda-project-id="6527700" data-tilda-page-id="32697487" data-tilda-page-alias="result" data-tilda-formskey="2974faf09c0c157a8ba4c541a6527700" data-tilda-lazy="yes" style="background-image: url('/static/newversion/png/fon50.png') ; background-size: 100%">
+    <div id="allrecords" class="t-records" data-hook="blocks-collection-content-node" data-tilda-project-id="6527700" data-tilda-page-id="32697487" data-tilda-page-alias="result" data-tilda-formskey="2974faf09c0c157a8ba4c541a6527700" data-tilda-lazy="yes" style="background-image: url('/static/newversion/png/fon50.png') ; background-size: 150% ">
         <div id="rec528533524" class="r t-rec t-rec_pb_0" style="padding-bottom:0px; " data-animationappear="off" data-record-type="258">
             <!-- T229 -->
             <div id="nav528533524marker"></div>
@@ -165,7 +165,7 @@
             }</style><![endif]-->
         </div>
         <div id="rec528519372" class="r t-rec t-rec_pt_60 t-rec_pb_30" style="padding-top:60px;padding-bottom:30px;  " data-record-type="180">
-            <!-- T165 -->
+            <!-- T165 t165__left"-->
             <div class="t165">
                 <div class="t-container">
                     <div class="t165__col-top t-col t-col_6 t165__vmiddle t165__left">
@@ -183,9 +183,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="t-col t-col_6 t165__vmiddle t165__left">
-                        <img class="t165__img t-img" src="{% static 'newversion/png/matrix.png' %}" data-original="https://static.tildacdn.info/tild3866-3032-4264-b161-346433363433/_drawio-2.png" imgfiled="img" alt="" role="presentation">
+
+                    <div class="t-col t-col_6 t165__vmiddle" >
+                        {% if matrix and num %}
+                            <img class="t165__img t-img" src="{% static num %}" data-original="{% static num %}" style="margin-bottom:0px ; size: 80%" alt="" role="presentation">
+                            <img class="t165__img t-img" src="{% static matrix %}" data-original="{% static matrix %}" style="margin-top:0px; size: 80%" alt="" role="presentation">
+                        {% else %}
+                            <img class="t165__img t-img" src="{% static 'newversion/png/num0.png' %}" data-original="{% static 'newversion/png/num0.png' %}" style="margin-bottom:0px ; size: 80%" alt="" role="presentation">
+                            <img class="t165__img t-img" src="{% static 'newversion/png/ma0.png' %}" data-original="{% static 'newversion/png/ma0.png' %}" style="margin-top:0px; size: 80%" alt="" role="presentation" >
+                        {% endif %}
                     </div>
+
                 </div>
             </div>
         </div>

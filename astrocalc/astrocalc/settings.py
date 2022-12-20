@@ -22,7 +22,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-s24up)rvgv8d*&
 # DJANGO_DEBUG='' при установке переменной пустая строка выключается режим дебага.
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = ['evasevastyanova.pythonanywhere.com']
+ALLOWED_HOSTS = ['evasevastyanova.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition

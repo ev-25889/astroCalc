@@ -17,13 +17,16 @@ def convert_to_num(alpha):
         return 8
     if alpha in 'зрщЗРЩ':
         return 9
-    return 'введено неправильное слово '
+    return 0
 
 def get_num_of_place(place):
     len_of_city = len(place)
     summa = 0
     for i in range(len(place)):
-        summa += convert_to_num(place[i])
+        if convert_to_num(place[i]) != 0:
+            summa += convert_to_num(place[i])
+        else:
+            return False
     while summa > 22:
         summa -= 22
     return summa
@@ -32,15 +35,16 @@ def get_num_of_place(place):
 
 def get_num_of_birthday(birthday):
     summa = 0
-    for i in range(len(birthday)):
-        if birthday[i] in '123456789':
-            summa += int(birthday[i])
+    for i in range(len(str(birthday))):
+        if str(birthday)[i] in '123456789':
+            summa += int(str(birthday)[i])
     while summa > 22:
         summa -= 22
     return summa
 
 print(get_num_of_birthday('30.10.1999'))
 print(get_num_of_birthday('12/09/1981'))
+print(get_num_of_birthday('01/01/2001'))
 
 def get_main_num(paramert, birthday):
     num1 = get_num_of_place(paramert)
@@ -51,7 +55,7 @@ def get_main_num(paramert, birthday):
     return summa
 
 
-print(get_main_num('Екатеринбург', '12.09.1981'))
+print(get_main_num('Екат', '30.10.1999'))
 
 
 

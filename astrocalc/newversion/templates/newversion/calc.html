@@ -12,7 +12,7 @@
     <meta property="og:title" content="Калькулятор"/>
     <meta property="og:description" content="A simple form with basic input fields such as name, phone number, and email address."/>
     <meta property="og:type" content="website"/>
-    <meta property="og:image" content="https://static.tildacdn.info/tild6534-3831-4563-b134-663735343631/-/resize/504x/noroot.png"/>
+    <meta property="og:image" content="{% static 'newversion/png/fon25.png' %}"/>
     <link rel="canonical" href="http://astrocalc.tilda.ws">
     <!--/metatextblock-->
     <meta name="format-detection" content="telephone=no"/>
@@ -199,7 +199,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <form id="form528524182" name='form528524182' role="form" method='post' data-formactiontype="0" data-inputbox=".t-input-group" class="t-form js-form-proccess t-form_inputs-total_5 " data-success-callback="t698_onSuccess">
+                                        <form id="form528524182" name='form528524182' action="{{ num }}" role="form" method='post' data-formactiontype="0" data-inputbox=".t-input-group" class="t-form js-form-proccess t-form_inputs-total_5 " data-success-callback="t698_onSuccess">
                                             <!-- NO ONE SERVICES CONNECTED -->
                                             {% csrf_token %}
                                             <div class="js-successbox t-form__successbox t-text t-text_md" style="display:none;"></div>
@@ -275,7 +275,7 @@
                                                     {{ error }}
                                                 </span>-->
                                                 <div class="t-form__submit">
-                                                    <input type="Submit" name="submit" value="Submit" class="t-submit" style="color:#000000;background-color:#f2e41d;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;"/>
+                                                    <input type="Submit" name="submit" value="Рассчитать" class="t-submit" style="color:#000000;background-color:#f2e41d;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;"/>
                                                 </div>
                                             </div>
                                             <!--
