@@ -10,11 +10,20 @@ from .forms import DataForm
 def about(request):
     return render(request, 'newversion/about.html')
 
-def result1(request):
-    return render(request, 'newversion/res1.html')
+def result(request, main, matrix, num):
+    template = 'newversion/res{main}.html'.format(main=main)
+    matrix = 'newversion/png/ma' + str(matrix) + '.png'
+    num = 'newversion/png/num' + str(num) + '.png'
+    return render(request, template, {'matrix':matrix, 'num':num})
+def result1(request, matrix, num):
+    matrix = 'newversion/png/ma' + str(matrix) + '.png'
+    num = 'newversion/png/num' + str(num) + '.png'
+    return render(request, 'newversion/res1.html', {'matrix':matrix, 'num':num})
 
-def result2(request):
-    return render(request, 'newversion/res2.html')
+def result2(request, matrix, num):
+    matrix = 'newversion/png/ma' + str(matrix) + '.png'
+    num = 'newversion/png/num' + str(num) + '.png'
+    return render(request, 'newversion/res2.html', {'matrix':matrix, 'num':num})
 
 def result3(request):
     return render(request, 'newversion/res3.html')
@@ -28,32 +37,49 @@ def result5(request):
 def result6(request):
     return render(request, 'newversion/res6.html')
 
-def result7(request):
-    return render(request, 'newversion/res7.html')
+def result7(request, matrix, num):
+    matrix = 'newversion/png/ma' + str(matrix) + '.png'
+    num = 'newversion/png/num' + str(num) + '.png'
+    return render(request, 'newversion/res7.html', {'matrix':matrix, 'num':num})
 
-def result8(request):
-    return render(request, 'newversion/res1.html')
+def result8(request, matrix, num):
+    matrix = 'newversion/png/ma' + str(matrix) + '.png'
+    num = 'newversion/png/num' + str(num) + '.png'
+    return render(request, 'newversion/res8.html', {'matrix':matrix, 'num':num})
 
-def result9(request):
-    return render(request, 'newversion/res2.html')
+def result9(request, matrix, num):
+    matrix = 'newversion/png/ma' + str(matrix) + '.png'
+    num = 'newversion/png/num' + str(num) + '.png'
+    return render(request, 'newversion/res9.html', {'matrix':matrix, 'num':num})
 
-def result10(request):
-    return render(request, 'newversion/res3.html')
+def result10(request, matrix, num):
+    matrix = 'newversion/png/ma' + str(matrix) + '.png'
+    num = 'newversion/png/num' + str(num) + '.png'
+    return render(request, 'newversion/res10.html', {'matrix':matrix, 'num':num})
 
-def result11(request):
-    return render(request, 'newversion/res4.html')
+def result11(request, matrix, num):
+    matrix = 'newversion/png/ma' + str(matrix) + '.png'
+    num = 'newversion/png/num' + str(num) + '.png'
+    return render(request, 'newversion/res11.html', {'matrix':matrix, 'num':num})
+def result12(request, matrix, num):
+    matrix = 'newversion/png/ma' + str(matrix) + '.png'
+    num = 'newversion/png/num' + str(num) + '.png'
+    return render(request, 'newversion/res12.html', {'matrix':matrix, 'num':num})
 
-def result12(request):
-    return render(request, 'newversion/res5.html')
+def result13(request, matrix, num):
+    matrix = 'newversion/png/ma' + str(matrix) + '.png'
+    num = 'newversion/png/num' + str(num) + '.png'
+    return render(request, 'newversion/res13.html', {'matrix':matrix, 'num':num})
 
-def result13(request):
-    return render(request, 'newversion/res6.html')
+def result14(request, matrix, num):
+    matrix = 'newversion/png/ma' + str(matrix) + '.png'
+    num = 'newversion/png/num' + str(num) + '.png'
+    return render(request, 'newversion/res14.html', {'matrix':matrix, 'num':num})
 
-def result14(request):
-    return render(request, 'newversion/res7.html')
-
-def result15(request):
-    return render(request, 'newversion/res1.html')
+def result15(request, matrix, num):
+    matrix = 'newversion/png/ma' + str(matrix) + '.png'
+    num = 'newversion/png/num' + str(num) + '.png'
+    return render(request, 'newversion/res15.html', {'matrix':matrix, 'num':num})
 
 def result16(request):
     return render(request, 'newversion/res2.html')
@@ -161,18 +187,19 @@ def get_info2(request):
         num_of_city = get_num_of_place(city)
         num_of_birthday = get_num_of_birthday(birthday)
         main_num = get_main_num(city, birthday)
-        matrix =  'newversion/png/ma' + str(num_of_birthday) + '.png'
-        num = 'newversion/png/num' + str(num_of_city) + '.png'
-        context = {'matrix':matrix, 'num':num}
+        #matrix =  'newversion/png/ma' + str(num_of_birthday) + '.png'
+        #num = 'newversion/png/num' + str(num_of_city) + '.png'
+        #context = {'matrix':matrix, 'num':num}
 
                #'lastname': lastname, ,
                #'emailvalue': emailvalue}
         #url = 'result/' + str(num_of_name)
         # return redirect(url, name)
-        url = 'result/{page}'.format(page=main_num)
+        # url = 'result/{page}'.format(page=main_num) + '/?matrix="' + matrix + '"&num="' + num + '"'
+        url = 'result/{page}/{matrix}/{num}'.format(page=main_num, matrix=num_of_birthday, num=num_of_city)
         template = 'newversion/res' + str(main_num) + '.html'
-        return render(request, template, context=context)
-        # return redirect(url, context=context)
+        # return render(request, template, context=context)
+        return redirect(url)
         #return redirect(url, {'matrix':matrix})
 
     num_of_name = get_num_of_place(name)
