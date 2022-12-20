@@ -161,7 +161,7 @@ def get_info2(request):
         num_of_city = get_num_of_place(city)
         num_of_birthday = get_num_of_birthday(birthday)
         main_num = get_main_num(city, birthday)
-        matrix =  'newversion/png/ma1.png' # 'newversion/png/ma' + str(num_of_birthday) + '.png'
+        matrix =  'newversion/png/ma' + str(num_of_birthday) + '.png'
         num = 'newversion/png/num' + str(num_of_city) + '.png'
         context = {'matrix':matrix, 'num':num}
 
@@ -171,7 +171,7 @@ def get_info2(request):
         # return redirect(url, name)
         url = 'result/{page}'.format(page=main_num)
         template = 'newversion/res' + str(main_num) + '.html'
-        return render(request, 'newversion/res', context=context)
+        return render(request, template, context=context)
         # return redirect(url, context=context)
         #return redirect(url, {'matrix':matrix})
 
