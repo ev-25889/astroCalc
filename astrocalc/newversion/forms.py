@@ -112,13 +112,14 @@ class DataForm(forms.Form):
 
     birthday = forms.DateField(
         widget=forms.DateInput(
-            attrs={'class':'t-input t-datepicker js-tilda-rule js-tilda-mask ',
+            attrs={'id':'date',
+                   'class':'t-input t-datepicker js-tilda-rule js-tilda-mask ',
                    'value':'',
                    'placeholder':'Дата рождения',
                    'data-tilda-rule':'date',
                    'data-tilda-dateformat':'DD-MM-YYYY',
-                   'data-tilda-datediv':'dash',
-                   'data-tilda-mask':'99-99-9999',
+                   'data-tilda-datediv':'dot',
+                   'data-tilda-mask':'99.99.9999',
                    'style':'color:#000000; background-color:#ffffff; border-radius: 7px; -moz-border-radius: 7px; '
                            '-webkit-border-radius: 7px;'}
         )

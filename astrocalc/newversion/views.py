@@ -209,4 +209,3 @@ def get_info2(request):
     return render(request, 'newversion/calc.html', context=context)
 
 
-
