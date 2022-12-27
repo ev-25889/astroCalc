@@ -121,10 +121,19 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 DATE_INPUT_FORMATS = ['%d.%m.%Y']
 DATE_FORMAT = ['%d.%m.%Y']
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = "strazhkovaeva@mail.ru"
+EMAIL_HOST_PASSWORD = "AvtO0611"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

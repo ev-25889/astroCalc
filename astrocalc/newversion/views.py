@@ -1,11 +1,13 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, reverse
 
+from django.core.mail import send_mail, BadHeaderError
+
 from .models import Data
 # from convert import convert_to_num
 from .convert import get_num_of_place, get_num_of_birthday, get_main_num
 
-from .forms import DataForm
+from .forms import DataForm, OSForm
 
 def about(request):
     return render(request, 'newversion/about.html')
@@ -14,154 +16,23 @@ def result(request, main, matrix, num):
     template = 'newversion/res{main}.html'.format(main=main)
     matrix = 'newversion/png/ma' + str(matrix) + '.png'
     num = 'newversion/png/num' + str(num) + '.png'
-    return render(request, template, {'matrix':matrix, 'num':num})
-def result1(request, matrix, num):
-    matrix = 'newversion/png/ma' + str(matrix) + '.png'
-    num = 'newversion/png/num' + str(num) + '.png'
-    return render(request, 'newversion/res1.html', {'matrix':matrix, 'num':num})
 
-def result2(request, matrix, num):
-    matrix = 'newversion/png/ma' + str(matrix) + '.png'
-    num = 'newversion/png/num' + str(num) + '.png'
-    return render(request, 'newversion/res2.html', {'matrix':matrix, 'num':num})
-
-def result3(request):
-    return render(request, 'newversion/res3.html')
-
-def result4(request):
-    return render(request, 'newversion/res4.html')
-
-def result5(request):
-    return render(request, 'newversion/res5.html')
-
-def result6(request):
-    return render(request, 'newversion/res6.html')
-
-def result7(request, matrix, num):
-    matrix = 'newversion/png/ma' + str(matrix) + '.png'
-    num = 'newversion/png/num' + str(num) + '.png'
-    return render(request, 'newversion/res7.html', {'matrix':matrix, 'num':num})
-
-def result8(request, matrix, num):
-    matrix = 'newversion/png/ma' + str(matrix) + '.png'
-    num = 'newversion/png/num' + str(num) + '.png'
-    return render(request, 'newversion/res8.html', {'matrix':matrix, 'num':num})
-
-def result9(request, matrix, num):
-    matrix = 'newversion/png/ma' + str(matrix) + '.png'
-    num = 'newversion/png/num' + str(num) + '.png'
-    return render(request, 'newversion/res9.html', {'matrix':matrix, 'num':num})
-
-def result10(request, matrix, num):
-    matrix = 'newversion/png/ma' + str(matrix) + '.png'
-    num = 'newversion/png/num' + str(num) + '.png'
-    return render(request, 'newversion/res10.html', {'matrix':matrix, 'num':num})
-
-def result11(request, matrix, num):
-    matrix = 'newversion/png/ma' + str(matrix) + '.png'
-    num = 'newversion/png/num' + str(num) + '.png'
-    return render(request, 'newversion/res11.html', {'matrix':matrix, 'num':num})
-def result12(request, matrix, num):
-    matrix = 'newversion/png/ma' + str(matrix) + '.png'
-    num = 'newversion/png/num' + str(num) + '.png'
-    return render(request, 'newversion/res12.html', {'matrix':matrix, 'num':num})
-
-def result13(request, matrix, num):
-    matrix = 'newversion/png/ma' + str(matrix) + '.png'
-    num = 'newversion/png/num' + str(num) + '.png'
-    return render(request, 'newversion/res13.html', {'matrix':matrix, 'num':num})
-
-def result14(request, matrix, num):
-    matrix = 'newversion/png/ma' + str(matrix) + '.png'
-    num = 'newversion/png/num' + str(num) + '.png'
-    return render(request, 'newversion/res14.html', {'matrix':matrix, 'num':num})
-
-def result15(request, matrix, num):
-    matrix = 'newversion/png/ma' + str(matrix) + '.png'
-    num = 'newversion/png/num' + str(num) + '.png'
-    return render(request, 'newversion/res15.html', {'matrix':matrix, 'num':num})
-
-def result16(request):
-    return render(request, 'newversion/res2.html')
-
-def result17(request):
-    return render(request, 'newversion/res3.html')
-
-def result18(request):
-    return render(request, 'newversion/res4.html')
-
-def result19(request):
-    return render(request, 'newversion/res5.html')
-
-def result20(request):
-    return render(request, 'newversion/res6.html')
-
-def result21(request):
-    return render(request, 'newversion/res7.html')
-
-def result22(request):
-    return render(request, 'newversion/res1.html')
-
-
-
-
-def get_info(request):
-    # if this is a POST request we need to process the form data
     submitbutton = request.POST.get("submit")
-    #error = ''
-    name = ''
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = DataForm(request.POST or None)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            #form.save()
-            name = form.cleaned_data.get("name")
-            #birthday = form.cleaned_data.get("birthday")
-            #mes = form.cleaned_data.get("mes")
-            # return redirect('result')
-            #return HttpResponseRedirect('/thanks/')
-            data = {
-                'form': form,
-                # 'error':error,
-                'name': name
-            }
-            return render(request, 'newversion/calc.html', data)
-        else:
-            error = 'форма неправильно заполнена'
-    form = DataForm
-    data = {
-        'form': form,
-        #'error':error,
-        'name':name
-    }
 
-    return render(request, 'newversion/calc.html', data)
+    form = OSForm(request.POST or None)
+    if form.is_valid():
+        name = form.cleaned_data.get("name")
+        email = form.cleaned_data.get("email")
+        tel = form.cleaned_data.get("tel")
+        context = {'form': form, 'submitbutton': submitbutton,
+                   'name': name, 'email':email, 'tel':tel}
 
 
-def result_page(request, ):
-    submitbutton = request.POST.get("submit")
-    name = ''
-    birthday = ''
+        return render(request, 'newversion/calc.html', context=context)
+    return render(request, template, {'matrix':matrix, 'num':num, 'form': form})
 
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = DataForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            name = form.cleaned_data.get("name")
-            birthday = form.cleaned_data.get("birthday")
-            #return HttpResponseRedirect('/thanks/')
-    context = {'name':name,
-               'birthday': birthday
-               }
-    return render(request, 'newversion/result.html', context=context)
+
+
 
 def get_info2(request):
     submitbutton = request.POST.get("submit")
@@ -179,7 +50,10 @@ def get_info2(request):
                    'name': name}
         for i in city:
             if i.lower() not in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя':
+                context = {'form': form, 'submitbutton': submitbutton,
+                           'name': name, 'error': 'введен неправильный город'}
                 return render(request, 'newversion/calc.html', context=context)
+
 
         #lastname = form.cleaned_data.get("last_name")
         #emailvalue = form.cleaned_data.get("email")
